@@ -13,7 +13,19 @@ function fibs(n){
     }
 }
 fibs(8)
+    let arr = [];
 
-function fibsRec(){
-    
+function fibsRec(n){
+    if (n < 2){
+        // arr.push (n)
+        console.log(n);   
+        return n;
+    } else {
+        newN = (fibsRec (n-1) + fibsRec (n-2));
+        // arr.push (n)
+        console.log(newN);
+        console.log(n);
+        return n;
+    }
 }
+console.log(fibsRec(2));
