@@ -52,8 +52,37 @@ logFibonacciSequence(5);
 
 
 function mergeSort(arr){
-    console.log(arr);
+    // console.log(arr);
+    if(arr.length === 1) {
+        console.log('ready for merge');
+    } else {
+        let leftArr = arr.slice(0, Math.ceil(arr.length/2));
+        let rightArr = arr.slice(Math.ceil(arr.length / 2));
 
+        let sortLeftArr = leftArr.sort();
+        let sortRightArr = rightArr.sort();
+
+        console.log(sortLeftArr);
+        console.log(sortRightArr);
+
+        console.log(sortLeftArr[0]);
+
+
+        if (sortLeftArr[0] > sortRightArr[0]){
+            arr.push(sortRightArr);
+            console.log(sortRightArr);
+            console.log(arr);
+        } else if (sortLeftArr[0] < sortRightArr[0]){
+            arr.push(sortLeftArr);
+            console.log(sortLeftArr);
+            console.log(arr);
+        }
+    }
 }
 
-mergeSort([2, 1, 3, 0])
+mergeSort([2, 1, 4, 3])
+
+// Splits the array in half
+// Sorts the left half
+// Sorts the right half
+// Merges the two halves together
