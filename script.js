@@ -107,7 +107,7 @@ function merge(left, right) {
       rightIndex++;
     }
   }
-  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex)); //appends the last element
 }
 
 function mergeSort(arr) {
