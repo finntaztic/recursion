@@ -52,44 +52,82 @@ logFibonacciSequence(5);
 
 
 
-let tempArr = [];
 
-function mergeSort(arr){
-    // console.log(arr);
-    if(arr.length <= 1) {
-        console.log('ready for merge');
-        return arr;
-    } else {
-        let leftSubArr = arr.slice(0, Math.ceil(arr.length/2));
-        let rightSubArr = arr.slice(Math.ceil(arr.length / 2));
-         //slice the array evenly
-        console.log(leftSubArr);
-        console.log(rightSubArr);
+// function mergeSort(arr){
+//     // console.log(arr);
 
-        //split the sub array evenly
-        mergeSort(leftSubArr); 
-        mergeSort(rightSubArr); 
+//     let tempArr = [];
+//     console.log(tempArr);
+
+
+//     if(arr.length <= 1) {
+//         console.log('ready for merge');
+//         return arr;
+//     } else {
+//         let leftSubArr = arr.slice(0, Math.ceil(arr.length/2));
+//         let rightSubArr = arr.slice(Math.ceil(arr.length / 2));
+//          //slice the array evenly
+//         console.log(leftSubArr);
+//         console.log(rightSubArr);
+
+//         //split the sub array evenly
+//         mergeSort(leftSubArr); 
+//         mergeSort(rightSubArr); 
         
-        console.log(leftSubArr[0]);
-        console.log(rightSubArr[0]);
+//         console.log(leftSubArr[0]);
+//         console.log(rightSubArr[0]);
 
-        if (leftSubArr[0] < rightSubArr[0]){
-            tempArr.push (leftSubArr[0]);
-            tempArr.push (rightSubArr[0]);
+//         if (leftSubArr[0] < rightSubArr[0]){
+//             tempArr.push (leftSubArr[0]);
+//             tempArr.push (rightSubArr[0]);
+//             console.log(tempArr);
+//         } else if (leftSubArr[0] > rightSubArr[0]){
+//             tempArr.push (rightSubArr[0]);
+//             tempArr.push (leftSubArr[0]);
+//             console.log(tempArr);
+//         } return tempArr;
+//     }
 
-            
-            console.log(tempArr);
-        } else if (leftSubArr[0] > rightSubArr[0]){
-            tempArr.push (rightSubArr[0]);
-            tempArr.push (leftSubArr[0]);
-            console.log(tempArr);
-        } return tempArr;
+// }
+
+// mergeSort([2, 1, 4, 3])
+
+
+function merge(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
     }
+  }
+  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
 }
 
-mergeSort([2, 1, 3])
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  const middle = Math.floor(arr.length / 2);
+  const left = arr.slice(0, middle);
+  const right = arr.slice(middle);
 
-// Splits the array in half
-// Sorts the left half
-// Sorts the right half
-// Merges the two halves together
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
+
+  return merge(sortedLeft, sortedRight);
+}
+
+// Call the function and get the sorted array
+const sortedArray = mergeSort([3, 2, 1, 13, 8, 5, 0, 1]);
+
+// Now, handle your specific logging requirement
+console.log(sortedArray); // Log the sorted array
+console.log(2);           // Log 2
+console.log(4);           // Log 4
