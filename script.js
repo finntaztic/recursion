@@ -51,36 +51,43 @@ logFibonacciSequence(5);
 // // console.log(fibsRec(3));
 
 
+
+let tempArr = [];
+
 function mergeSort(arr){
     // console.log(arr);
-    if(arr.length === 1) {
+    if(arr.length <= 1) {
         console.log('ready for merge');
+        return arr;
     } else {
-        let leftArr = arr.slice(0, Math.ceil(arr.length/2));
-        let rightArr = arr.slice(Math.ceil(arr.length / 2));
+        let leftSubArr = arr.slice(0, Math.ceil(arr.length/2));
+        let rightSubArr = arr.slice(Math.ceil(arr.length / 2));
+         //slice the array evenly
+        console.log(leftSubArr);
+        console.log(rightSubArr);
 
-        let sortLeftArr = leftArr.sort();
-        let sortRightArr = rightArr.sort();
+        //split the sub array evenly
+        mergeSort(leftSubArr); 
+        mergeSort(rightSubArr); 
+        
+        console.log(leftSubArr[0]);
+        console.log(rightSubArr[0]);
 
-        console.log(sortLeftArr);
-        console.log(sortRightArr);
+        if (leftSubArr[0] < rightSubArr[0]){
+            tempArr.push (leftSubArr[0]);
+            tempArr.push (rightSubArr[0]);
 
-        console.log(sortLeftArr[0]);
-
-
-        if (sortLeftArr[0] > sortRightArr[0]){
-            arr.push(sortRightArr);
-            console.log(sortRightArr);
-            console.log(arr);
-        } else if (sortLeftArr[0] < sortRightArr[0]){
-            arr.push(sortLeftArr);
-            console.log(sortLeftArr);
-            console.log(arr);
-        }
+            
+            console.log(tempArr);
+        } else if (leftSubArr[0] > rightSubArr[0]){
+            tempArr.push (rightSubArr[0]);
+            tempArr.push (leftSubArr[0]);
+            console.log(tempArr);
+        } return tempArr;
     }
 }
 
-mergeSort([2, 1, 4, 3])
+mergeSort([2, 1, 3])
 
 // Splits the array in half
 // Sorts the left half
